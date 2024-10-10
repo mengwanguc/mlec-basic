@@ -119,3 +119,24 @@ You can also verify it on the host machine:
 ```
 sudo du -sh * /home/cc/hdfs/zfs-folder-1/current/
 ```
+
+You can also veriy it by checking zpool:
+
+```
+sudo zpool list
+```
+
+The expected output is:
+
+```
+cc@meng-mlec-sim:~/hdfs$ sudo zpool list
+NAME    SIZE  ALLOC   FREE  CKPOINT  EXPANDSZ   FRAG    CAP  DEDUP    HEALTH  ALTROOT
+pool1  2.75G  7.88M  2.74G        -         -     0%     0%  1.00x    ONLINE  -
+pool2  2.75G  7.85M  2.74G        -         -     0%     0%  1.00x    ONLINE  -
+pool3  2.75G  7.85M  2.74G        -         -     0%     0%  1.00x    ONLINE  -
+```
+
+The ALLOC is 7.88MB. It is 1.5*5MB, because each ZFS pools stores 5MB block from HDFS, and does further 2+1 in ZFS in the 2nd level, which creates another 2.5MB parity.
+
+You might notice the size is slightly higher than expected (e.g. 7.88MB > 7.5MB). This happens for both HDFS and ZFS, probably because
+it needs some extra space for storing metadata etc.

@@ -1,6 +1,8 @@
 # MLEC Basic
 Basic configuration for Multi-Level Erasure Coding (MLEC)
 
+The following steps have been tested on a Ubuntu 20 machine on Chameleon Cloud.
+
 ### Set up ssh keys for github
 
 ```
@@ -29,3 +31,11 @@ git config --global user.email "mengwanguc@gmail.com"
 ```
 git clone https://github.com/mengwanguc/mlec-basic
 ```
+
+## Set up ZFS
+
+Check [zfs-setup/README.md](zfs-setup/README.md) and view the readme there.
+
+## Set up HDFS
+
+Check [hdfs-setup/README.md](hdfs-setup/README.md) and view the readme there.
