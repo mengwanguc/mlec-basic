@@ -47,9 +47,9 @@ docker-compose --version
 
 *Make sure* you have 3 zfs systems mounted to the following folders:
 ```
-~/zfs-folder-1/
-~/zfs-folder-2/
-~/zfs-folder-3/
+/home/cc/hdfs/zfs-folder-1
+/home/cc/hdfs/zfs-folder-2
+/home/cc/hdfs/zfs-folder-3
 ```
 
 Start the containers:
@@ -114,3 +114,8 @@ du -sh hadoop/dfs/data/current/
 ```
 
 You can see the actual data stored in datanode1 is 5MB. Similarly, datanode2 has 5MB and datanode3 has 5MB. All adds up to 10MB data and 5MB parity.
+
+You can also verify it on the host machine:
+```
+sudo du -sh * /home/cc/hdfs/zfs-folder-1/current/
+```
