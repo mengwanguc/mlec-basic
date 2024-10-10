@@ -45,7 +45,7 @@ docker-compose --version
 
 ## Run the containers
 
-*Make sure* you have 3 zfs systems mounted to the following folders:
+*Make sure* you have 3 zfs pools mounted to the following folders:
 ```
 /home/cc/hdfs/zfs-folder-1
 /home/cc/hdfs/zfs-folder-2
