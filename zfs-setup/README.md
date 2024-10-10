@@ -82,6 +82,11 @@ Check zpool status:
 sudo zpool status
 ```
 
+Check zpool usage/size:
+```
+sudo zpool list
+```
+
 ### Prepare 3 ZFS folders
 
 We have already created one zpool. Let's now create another 2 zpools:
@@ -102,4 +107,9 @@ Check zpool status. You should see 3 pools:
 
 ```
 sudo zpool status
+```
+
+And also check the usage/size of each pool.
+```
+sudo zpool list
 ```
