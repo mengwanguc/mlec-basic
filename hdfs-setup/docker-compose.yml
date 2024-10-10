@@ -1,0 +1,73 @@
+services:
+  namenode:
+    image: bde2020/hadoop-namenode:2.0.0-hadoop3.2.1-java8
+    container_name: namenode
+    environment:
+      - CLUSTER_NAME=test-cluster
+      - CORE_CONF_fs_defaultFS=hdfs://namenode:8020
+      - CORE_CONF_hadoop_http_staticuser_user=root
+      - HDFS_CONF_dfs_namenode_name_dir=file:///hadoop/dfs/name
+      - HDFS_CONF_dfs_replication=1
+      - HDFS_CONF_dfs_erasure_coding_enabled=true
+      - HDFS_CONF_dfs_permissions_enabled=false
+    volumes:
+      - namenode:/hadoop/dfs/name
+    ports:
+      - "9870:9870"
+      - "8020:8020"
+    networks:
+      - hadoop
+
+  datanode1:
+    image: bde2020/hadoop-datanode:2.0.0-hadoop3.2.1-java8
+    container_name: datanode1
+    environment:
+      - CORE_CONF_fs_defaultFS=hdfs://namenode:8020
+      - HDFS_CONF_dfs_datanode_data_dir=file:///hadoop/dfs/data
+    volumes:
+      - datanode1:/hadoop/dfs/data
+    ports:
+      - "9864:9864"
+    networks:
+      - hadoop
+    depends_on:
+      - namenode
+
+  datanode2:
+    image: bde2020/hadoop-datanode:2.0.0-hadoop3.2.1-java8
+    container_name: datanode2
+    environment:
+      - CORE_CONF_fs_defaultFS=hdfs://namenode:8020
+      - HDFS_CONF_dfs_datanode_data_dir=file:///hadoop/dfs/data
+    volumes:
+      - datanode2:/hadoop/dfs/data
+    ports:
+      - "9865:9864"
+    networks:
+      - hadoop
+    depends_on:
+      - namenode
+
+  datanode3:
+    image: bde2020/hadoop-datanode:2.0.0-hadoop3.2.1-java8
+    container_name: datanode3
+    environment:
+      - CORE_CONF_fs_defaultFS=hdfs://namenode:8020
+      - HDFS_CONF_dfs_datanode_data_dir=file:///hadoop/dfs/data
+    volumes:
+      - datanode3:/hadoop/dfs/data
+    ports:
+      - "9866:9864"
+    networks:
+      - hadoop
+    depends_on:
+      - namenode
+
+volumes:
+  namenode:
+  datanode1:
+  datanode2:
+  datanode3:
+
+networks:
+  hadoop:
